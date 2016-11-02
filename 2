@@ -1,0 +1,58 @@
+package youtube;
+ 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+ 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+ 
+/**
+ * Servlet implementation class ChatServer
+ */
+@WebServlet("/ChatServer")
+public class ChatServer extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+     
+    ArrayList<ChatEintrag> chatverlauf;
+     
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ChatServer() {
+        super();
+        // TODO Auto-generated constructor stub
+        chatverlauf = new ArrayList<ChatEintrag>();
+    }
+ 
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/plain");
+ 
+        PrintWriter out = response.getWriter();
+         
+        for(ChatEintrag ce : chatverlauf){
+            out.println(ce.getNick()+": \t"+ce.getInhalt()+"\n");
+        }
+         
+        out.close();
+    }
+ 
+    /**
+     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+        String nick = request.getParameter("nickname");
+        String in = request.getParameter("inhalt");
+         
+        ChatEintrag ce = new ChatEintrag(nick,in);
+        chatverlauf.add(ce);
+        System.out.println("adding");
+    }
+ 
+}
