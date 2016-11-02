@@ -1,0 +1,41 @@
+package youtube;
+ 
+public class ChatEintrag {
+    private String nick;
+    private String inhalt;
+     
+    /**
+     * @param nick
+     * @param inhalt
+     */
+    public ChatEintrag(String nick, String inhalt) {
+        super();
+        this.nick = nick;
+        this.inhalt = inhalt;
+    }
+     
+    /**
+     * @return the nick
+     */
+    public String getNick() {
+        return nick;
+    }
+    /**
+     * @param nick the nick to set
+     */
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+    /**
+     * @return the inhalt
+     */
+    public String getInhalt() {
+        return inhalt;
+    }
+    /**
+     * @param inhalt the inhalt to set
+     */
+    public void setInhalt(String inhalt) {
+        this.inhalt = inhalt;
+    }
+}
